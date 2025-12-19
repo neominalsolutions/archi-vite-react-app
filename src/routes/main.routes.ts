@@ -7,11 +7,15 @@ const mainRoutes: RouteObject = {
 	children: [
 		{
 			index: true,
-			Component: React.lazy(() => import('../pages/home.page')),
+			Component: React.lazy(() => import('../pages/index/home.page')),
 		},
 		{
 			path: 'hooks',
-			Component: React.lazy(() => import('../pages/react.hooks.page')),
+			Component: React.lazy(() => import('../pages/index/react.hooks.page')),
+		},
+		{
+			path: 'atomic-design',
+			Component: React.lazy(() => import('../pages/index/atomic-design.page')),
 		},
 	],
 };
