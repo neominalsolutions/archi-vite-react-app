@@ -10,7 +10,8 @@ const axiosClient = axios.create({
 // key:authorization  value:Bearer Token
 const httpGet = async (endpoint: string, headers?: Record<string, string>) => {
 	const response = await axiosClient.get(endpoint, { headers });
-	return response.data;
+	console.log('GET Response:', response.data);
+	return response;
 };
 
 const httpPost = async (
@@ -21,7 +22,7 @@ const httpPost = async (
 	const response = await axiosClient.post(endpoint, body, {
 		headers,
 	});
-	return response.data;
+	return response;
 };
 
 const httpPut = async (
@@ -32,7 +33,7 @@ const httpPut = async (
 	const response = await axiosClient.put(endpoint, body, {
 		headers,
 	});
-	return response.data;
+	return response;
 };
 
 const httpDelete = async (
@@ -44,7 +45,7 @@ const httpDelete = async (
 		headers,
 		data: body,
 	});
-	return response.data;
+	return response;
 };
 
 // tüm istek akışlarını yönetebildiği loglayabildiği merkezi bir client yapısı oluşturduk

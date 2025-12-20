@@ -1,12 +1,13 @@
-import axios, { type AxiosResponse } from 'axios';
+import { type AxiosResponse } from 'axios';
 import type { Post } from '../model/post';
+import { jsonPlaceholderClient } from './jsonplaceholder.client';
 
 // Example function to fetch posts from a placeholder API
 // Post model API karşılıkları için kullanılabilir
 
 export const getPostAsync = async (): Promise<Post[]> => {
-	const response: AxiosResponse<Post[]> = await axios.get(
-		`https://jsonplaceholder.typicode.com/posts`
+	const response: AxiosResponse<Post[]> = await jsonPlaceholderClient.httpGet(
+		'/posts'
 	);
 	const data: Post[] = response.data;
 	return data;
@@ -17,10 +18,10 @@ export function getPosts() {
 	return fetch('https://jsonplaceholder.typicode.com/posts')
 		.then((response) => response.json())
 		.then((data: Post[]) => {
-			console.log('Fetched posts:', data);
-			data.forEach((post) => {
-				console.log(`Post ID: ${post.id}, Title: ${post.title}`);
-			});
+			// console.log('Fetched posts:', data);
+			// data.forEach((post) => {
+			// 	//console.log(`Post ID: ${post.id}, Title: ${post.title}`);
+			// });
 
 			// geç resolve et
 
@@ -35,7 +36,7 @@ export function getPostById(postId: number) {
 	return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
 		.then((response) => response.json())
 		.then((data: Post) => {
-			console.log('Fetched post:', data);
+			// console.log('Fetched post:', data);
 			return data;
 		})
 		.catch((error) => {

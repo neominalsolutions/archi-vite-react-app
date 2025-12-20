@@ -41,6 +41,16 @@ const mainRoutes: RouteObject = {
 						// throw new Error('Hata');
 
 						const data = await getPostAsync();
+						console.log('Loader Data:', data);
+
+						// getPostAsync()
+						// 	.then((data) => {
+						// 		console.log('Fetched posts in loader:', data);
+						// 		return data;
+						// 	})
+						// 	.catch((error) => {
+						// 		console.error('Error fetching posts in loader:', error);
+						// 	});
 
 						return data;
 					},
