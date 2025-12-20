@@ -1,0 +1,31 @@
+import { createContext } from 'react';
+
+// client state yönetimi için context tanımlamaları
+export interface CartState {
+	items: { name: string; productId: string; price: number; quantity: number }[];
+	total: number;
+}
+
+// Context Ne gibi değerler sağlayacak, hangi methodlar olacak
+export interface CartContextType {
+	cart: CartState; // mevcut sepet durumu
+	addItem: (
+		// sepete ürün ekleme işlevi
+		{
+			name,
+			productId,
+			price,
+			quantity,
+		}: { name: string; productId: string; price: number; quantity: number }
+	) => void;
+	removeItem: (productId: string) => void; // sepetteki ürünü kaldırma işlevi
+	clearCart: () => void; // sepeti temizleme işlevi
+}
+
+// ilk sepet durumu
+export const initialCartState: CartState = {
+	items: [],
+	total: 0,
+};
+
+export const CartContext = createContext<CartContextType | null>(null);
