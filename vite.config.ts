@@ -9,9 +9,6 @@ export default defineConfig(({ mode }) => {
 	const env: Record<string, string> = loadEnv(mode, process.cwd(), '');
 	const isProduction = mode === 'production';
 
-	console.log(`Building for ${mode} mode.`);
-	console.log(`env variables:`, env);
-
 	return {
 		plugins: [react(), tailwindcss()],
 
