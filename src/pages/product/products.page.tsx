@@ -4,11 +4,17 @@ import {
 	CartContext,
 	type CartContextType,
 } from '../../context/cart/cart.context';
+import { useDispatch } from 'react-redux';
+import type { AppDispatch } from '../../store/store';
+
+// addItem -> export isimleri aynı olduğu için çakışmayı önlemek adına yeniden adlandırıyoruz.
+import { addItem as _addItem } from '../../store/cart/cart.slice';
 
 const ProductsPage = () => {
 	// component üzerinden state değiştirecek olan bir action tetiklememiz gerekiyor.
 	// useContext hook ile context listener görevi görür.
 	const { addItem } = useContext(CartContext) as CartContextType;
+	const dispatch = useDispatch<AppDispatch>();
 
 	const data: Product[] = [
 		{
@@ -61,7 +67,22 @@ const ProductsPage = () => {
 						onClick={() => onAddtoCart(product)}
 						className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
 					>
-						Sepete Ekle
+						Sepete Ekle (Context API)
+					</button>
+					<button
+						onClick={() =>
+							dispatch(
+								_addItem({
+									productId: product.id,
+									name: product.name,
+									quantity: 1,
+									price: product.price,
+								})
+							)
+						}
+						className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
+					>
+						Sepete Ekle (Redux Toolkit)
 					</button>
 				</div>
 			))}
