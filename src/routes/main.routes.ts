@@ -1,6 +1,9 @@
 import React from 'react';
 import type { RouteObject } from 'react-router';
 
+// Nested Route ve Nested Layout Örneği
+// Ana layout altında farklı sayfalar ve alt layoutlar tanımlanabilir
+
 const mainRoutes: RouteObject = {
 	path: '',
 	Component: React.lazy(() => import('../layout/main.layout')),
@@ -16,6 +19,16 @@ const mainRoutes: RouteObject = {
 		{
 			path: 'atomic-design',
 			Component: React.lazy(() => import('../pages/index/atomic-design.page')),
+		},
+		{
+			path: 'posts',
+			Component: React.lazy(() => import('../layout/post.layout')),
+			children: [
+				{
+					index: true,
+					Component: React.lazy(() => import('../pages/post/pages/index.page')),
+				},
+			],
 		},
 	],
 };
