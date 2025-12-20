@@ -1,6 +1,6 @@
 import React from 'react';
 import type { RouteObject } from 'react-router';
-import { getPosts } from '../client/post.client';
+import { getPostAsync } from '../client/post.client';
 
 // Nested Route ve Nested Layout Örneği
 // Ana layout altında farklı sayfalar ve alt layoutlar tanımlanabilir
@@ -40,7 +40,7 @@ const mainRoutes: RouteObject = {
 						// preload edilmiş verilerle component render edilir
 						// throw new Error('Hata');
 
-						const data = await getPosts();
+						const data = await getPostAsync();
 
 						return data;
 					},
