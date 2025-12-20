@@ -53,6 +53,15 @@ const httpDelete = async (
 // Request Interceptor
 axiosClient.interceptors.request.use(
 	(config) => {
+		// sunucuya gitmeden önce araya girip header ekleme işlemi yaparız
+
+		const hasToken = false; // örnek token kontrolü
+
+		if (hasToken) {
+			const token = 'your-auth-token';
+			config.headers.Authorization = `Bearer ${token}`;
+		}
+
 		// İstek öncesi işlemler
 		console.log('Request Interceptor:', config);
 		return config;
@@ -66,6 +75,12 @@ axiosClient.interceptors.request.use(
 // Response Interceptor
 axiosClient.interceptors.response.use(
 	(response) => {
+		if (response.status === 401) {
+			// yetkisiz erişim işlemleri
+			console.log('Unauthorized access - 401');
+			// örneğin kullanıcıyı login sayfasına yönlendirebiliriz
+			// token refresh işlemi yap
+		}
 		// Başarı durumu
 		// Yanıt öncesi işlemler
 		console.log('Response Interceptor:', response);
