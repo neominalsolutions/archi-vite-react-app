@@ -12,19 +12,22 @@ function PostIndexPage() {
 	const [error, setError] = useState<string | null>(null); // hata alma ihtimalmiz söz konusu
 
 	const loadData = () => {
-		getPosts()
-			.then(() => {
-				setLoading(false);
-				setPosts(posts);
-				console.log('Posts loaded successfully.');
-			})
-			.catch((error) => {
-				setLoading(false);
-				setError('Failed to load posts.');
-				console.error('Error loading posts:', error);
-			});
+		setTimeout(() => {
+			getPosts()
+				.then((data: Post[]) => {
+					setLoading(false);
+					setPosts(data);
+					// throw Error('Simulated data loading error');
+					console.log('Posts loaded successfully.');
+				})
+				.catch((error) => {
+					setLoading(false);
+					setError('Failed to load posts.');
+					console.error('Error loading posts:', error);
+				});
+		}, 2000);
 	};
-	
+
 	useEffect(() => {
 		document.title = 'Post Index Page';
 		loadData();

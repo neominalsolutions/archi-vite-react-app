@@ -12,9 +12,14 @@ export function getPosts() {
 			data.forEach((post) => {
 				console.log(`Post ID: ${post.id}, Title: ${post.title}`);
 			});
+
+			// geç resolve et
+
+			return Promise.resolve(data);
 		})
 		.catch((error) => {
 			console.error('Error fetching posts:', error);
+			return Promise.reject(error);
 		});
 }
 export function getPostById(postId: number) {
