@@ -1,5 +1,6 @@
 import React from 'react';
 import type { RouteObject } from 'react-router';
+import { getPosts } from '../client/post.client';
 
 // Nested Route ve Nested Layout Örneği
 // Ana layout altında farklı sayfalar ve alt layoutlar tanımlanabilir
@@ -28,10 +29,30 @@ const mainRoutes: RouteObject = {
 					index: true,
 					Component: React.lazy(() => import('../pages/post/pages/index.page')),
 				},
+				{
+					path: 'v2',
+					Component: React.lazy(
+						() => import('../pages/post/pages/index-v2.page')
+					),
+					loader: async () => {
+						// Veri yükleme işlemleri burada yapılabilir
+						// Örneğin, API çağrıları veya veri ön işleme
+						// preload edilmiş verilerle component render edilir
+						// throw new Error('Hata');
+
+						const data = await getPosts();
+
+						return data;
+					},
+					hasErrorBoundary: true,
+					ErrorBoundary: React.lazy(() => import('../pages/error')),
+				},
 			],
 		},
 	],
 };
+
+// loader, action, errorBoundary kullanımı Reactte Router v7 ile gelen yeni özelliklerdir
 
 // React.lazy ile tembel yükleme kullanarak ana rota yapılandırması
 // Ana layout ve alt sayfalar için bileşenler dinamik olarak yüklenir

@@ -12,7 +12,7 @@ function PostLayout() {
 				<NavLink to="/posts" className="mr-4">
 					All Post V1
 				</NavLink>
-				<NavLink to="/posts-v2" className="mr-4">
+				<NavLink to="/posts/v2" className="mr-4">
 					All Post V2
 				</NavLink>
 			</nav>
