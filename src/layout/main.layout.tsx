@@ -13,7 +13,7 @@ const MainLayout = () => {
 			<nav className="flex flex-row justify-center mb-4 space-x-4 text-lg font-medium text-blue-600 underline border-b pb-2 bg-gray-50">
 				<Link to="/">Home</Link> <Link to="/hooks">Hooks</Link>{' '}
 				<Link to="/atomic-design">Atomic Design</Link>{' '}
-				<Link to="/posts">Post Pages</Link>{' '}
+				<Link to="/posts">Post Pages</Link> <Link to="/products">Products</Link>{' '}
 			</nav>
 			<main>
 				<div className="min-h-screen bg-gray-50 flex flex-col py-6 px-4">
