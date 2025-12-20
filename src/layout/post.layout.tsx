@@ -1,18 +1,31 @@
 import { NavLink, Outlet } from 'react-router';
-import { Typography } from '../ui';
 
 // Nasayafadan post sayfalarına geçiş için bir layout örneği
 // Post sayfaları için ortak başlık ve navigasyon içerir
+// Navlink hangi statede kaldığımızı bilir ve ona göre stil uygular
 
 function PostLayout() {
 	return (
 		<div>
-			<Typography renderAs="h1">Post Layout</Typography>
 			<nav className="mb-4">
-				<NavLink to="/posts" className="mr-4">
+				<NavLink
+					className={({ isActive }) =>
+						isActive
+							? 'px-4 py-2 text-blue-600 font-semibold'
+							: 'px-4 py-2 text-gray-600 hover:text-blue-600'
+					}
+					to="/posts/home"
+				>
 					All Post V1
 				</NavLink>
-				<NavLink to="/posts/v2" className="mr-4">
+				<NavLink
+					className={({ isActive }) =>
+						isActive
+							? 'px-4 py-2 text-blue-600 font-semibold'
+							: 'px-4 py-2 text-gray-600 hover:text-blue-600'
+					}
+					to="/posts/v2"
+				>
 					All Post V2
 				</NavLink>
 			</nav>

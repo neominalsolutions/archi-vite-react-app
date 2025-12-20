@@ -26,7 +26,7 @@ const mainRoutes: RouteObject = {
 			Component: React.lazy(() => import('../layout/post.layout')),
 			children: [
 				{
-					index: true,
+					path: 'home',
 					Component: React.lazy(() => import('../pages/post/pages/index.page')),
 				},
 				{
