@@ -1,6 +1,14 @@
+import { useContext } from 'react';
 import type { Product } from '../../model/product';
+import {
+	CartContext,
+	type CartContextType,
+} from '../../context/cart/cart.context';
 
 const ProductsPage = () => {
+	// component üzerinden state değiştirecek olan bir action tetiklememiz gerekiyor.
+	const { addItem } = useContext(CartContext) as CartContextType;
+
 	const data: Product[] = [
 		{
 			id: '1',
@@ -22,6 +30,18 @@ const ProductsPage = () => {
 
 	const onAddtoCart = (data: Product) => {
 		console.log(`Product ${data.id} added to cart.`);
+		// ilgili methoda  -> redux içtin action'a gönderilen veriye payload denir
+		// payload: state değiştirmek için action ile gönderilen veri
+		addItem({
+			name: data.name,
+			productId: data.id,
+			price: data.price,
+			quantity: 1,
+		});
+
+		window.alert(`${data.name} sepete eklendi.`);
+
+		// cartProvider içindeki addItem methodunu kullanarak ürünü sepete eklemeliyiz.
 	};
 
 	return (
@@ -44,6 +64,13 @@ const ProductsPage = () => {
 					</button>
 				</div>
 			))}
+
+			<button
+				onClick={() => {}}
+				className="mt-4 px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition"
+			>
+				Sepete Git
+			</button>
 		</div>
 	);
 };

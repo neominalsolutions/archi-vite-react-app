@@ -63,6 +63,10 @@ const mainRoutes: RouteObject = {
 			path: 'products',
 			Component: React.lazy(() => import('../pages/product/products.page')),
 		},
+		{
+			path: 'cart-summary',
+			Component: React.lazy(() => import('../pages/cart/cart.summary.page')),
+		},
 	],
 };
 

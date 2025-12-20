@@ -1,7 +1,8 @@
 // ilk adım context oluşturma ve contextTypeları oluşturma ve contextState oluşturma
 
 import { useState } from 'react';
-import { CartContext, initialCartState, type CartState } from './cart.context';
+import { CartContext, initialCartState } from './cart.context';
+import type { CartState } from '../../model/cart';
 
 // useContext ile Context içerisinde state ve methodlara erişebiliriz.
 
@@ -89,3 +90,5 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default CartProvider;
+
+// Bu yapının uygulama geneline yansıtılması için Provider tanımını src/main.tsx tüm uygulamadaki componentleri sarmalayacak şekilde eklememiz gerekiyor.

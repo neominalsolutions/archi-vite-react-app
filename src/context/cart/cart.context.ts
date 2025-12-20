@@ -1,10 +1,7 @@
 import { createContext } from 'react';
+import type { CartState } from '../../model/cart';
 
 // client state yönetimi için context tanımlamaları
-export interface CartState {
-	items: { name: string; productId: string; price: number; quantity: number }[];
-	total: number;
-}
 
 // Context Ne gibi değerler sağlayacak, hangi methodlar olacak
 export interface CartContextType {
