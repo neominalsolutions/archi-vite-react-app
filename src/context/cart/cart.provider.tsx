@@ -70,7 +70,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 	const clearCart = () => {
 		// Sepeti temizleme mantığı
-		setCart(initialCartState);
+		setCart({ ...cart, items: [], total: 0 });
 	};
 
 	// Provider içerisinde tanımlı olan componentlerin tüketeceği Context.Consumer lere sağlanacak değerler

@@ -6,7 +6,11 @@ import {
 import { Typography } from '../../ui';
 
 function CartSummaryPage() {
-	const { cart } = useContext(CartContext) as CartContextType;
+
+	// yaptığımız şey context içindeki state ve methodlara erişmek. ve güncel state i kullanmak.
+	const { cart, clearCart, removeItem } = useContext(
+		CartContext
+	) as CartContextType;
 
 	const hasItems = cart.items && cart.items.length > 0;
 
@@ -88,7 +92,10 @@ function CartSummaryPage() {
 										</div>
 
 										{/* Remove Button */}
-										<button className="text-gray-400 hover:text-red-500 transition-colors p-2">
+										<button
+											onClick={() => removeItem(item.productId)}
+											className="text-gray-400 hover:text-red-500 transition-colors p-2"
+										>
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
 												fill="none"
@@ -107,6 +114,13 @@ function CartSummaryPage() {
 									</div>
 								</div>
 							))}
+
+							<button
+								onClick={clearCart}
+								className="mt-4 px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition"
+							>
+								Sepeti Temizle
+							</button>
 						</div>
 
 						{/* Order Summary */}

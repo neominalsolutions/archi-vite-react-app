@@ -7,6 +7,7 @@ import {
 
 const ProductsPage = () => {
 	// component üzerinden state değiştirecek olan bir action tetiklememiz gerekiyor.
+	// useContext hook ile context listener görevi görür.
 	const { addItem } = useContext(CartContext) as CartContextType;
 
 	const data: Product[] = [
