@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { Product } from '../products/product.slice';
+import type { Product } from '../../store/products/product.slice';
 
 export interface ODataResponse<T> {
 	value: T[];

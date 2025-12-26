@@ -10,7 +10,7 @@ import type { Post } from '../../../model/post';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useAddPostMutation } from '../../../store/postApi/post.api';
+import { useAddPostMutation } from '../../../api/postApi/post.api';
 
 function PostForm({
 	open,

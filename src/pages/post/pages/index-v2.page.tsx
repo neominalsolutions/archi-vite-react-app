@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import PostForm from '../components/post.form';
-import { useGetPostsQuery } from '../../../store/postApi/post.api';
+import { useGetPostsQuery } from '../../../api/postApi/post.api';
 import type { Post } from '../../../model/post';
 import React from 'react';
 

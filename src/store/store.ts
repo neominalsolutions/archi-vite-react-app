@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { cartReducer } from './cart/cart.slice';
 import { productReducer } from './products/product.slice';
-import { productApi } from './productApi/product.api';
+import { productApi } from '../api/productApi/product.api';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { postApi } from './postApi/post.api';
+import { postApi } from '../api/postApi/post.api';
 // ...
 // state merkezi olarak store da tutulacaksa, slice lar burada import edilip eklenir.
 export const store = configureStore({

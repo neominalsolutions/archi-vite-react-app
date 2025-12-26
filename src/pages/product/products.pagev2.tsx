@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { addItem as _addItem } from '../../store/cart/cart.slice';
-import { useGetProductsFilterByNameQuery } from '../../store/productApi/product.api';
+import { useGetProductsFilterByNameQuery } from '../../api/productApi/product.api';
 import { type Product } from '../../store/products/product.slice';
 import debounce from '../../utils/debounce';
 
