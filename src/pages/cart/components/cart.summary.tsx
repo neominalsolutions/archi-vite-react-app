@@ -3,14 +3,14 @@ import { Typography } from '../../../ui';
 type CartSummaryProps = {
 	cart: {
 		items: Array<{
-			productId: string;
+			productId: number;
 			name: string;
 			quantity: number;
 			price: number;
 		}>;
 		total: number;
 	};
-	onRemoveItem: (productId: string) => void;
+	onRemoveItem: (productId: number) => void;
 	onClearCart: () => void;
 };
 
@@ -85,10 +85,10 @@ const CartSummary = ({ cart, onRemoveItem, onClearCart }: CartSummaryProps) => {
 												{/* Price */}
 												<div className="text-right">
 													<Typography className="text-sm text-gray-500">
-														${item.price.toFixed(2)} each
+														${Number(item.price.toString()).toFixed(2)} each
 													</Typography>
 													<Typography className="text-lg font-bold text-gray-900">
-														${(item.price * item.quantity).toFixed(2)}
+														${item.price * item.quantity}
 													</Typography>
 												</div>
 											</div>

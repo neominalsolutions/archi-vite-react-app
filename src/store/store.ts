@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { cartReducer } from './cart/cart.slice';
+import { productReducer } from './products/product.slice';
 // ...
 // state merkezi olarak store da tutulacaksa, slice lar burada import edilip eklenir.
 export const store = configureStore({
 	reducer: {
 		cartState: cartReducer,
+		productState: productReducer,
 	}, // burada slice ların reducer ları eklenir. örn: userState: userReducer
 	// bu kısım state tanımı ve store üzerinde middleware ekleme gibi işlemler için kullanılabilir.
 });

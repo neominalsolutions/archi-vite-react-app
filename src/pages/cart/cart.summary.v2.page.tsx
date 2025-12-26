@@ -11,7 +11,7 @@ function CartSummaryV2Page() {
 	return (
 		<CartSummary
 			cart={cartState}
-			onRemoveItem={(productId: string) => dispatch(removeItem({ productId }))}
+			onRemoveItem={(productId: number) => dispatch(removeItem({ productId }))}
 			onClearCart={() => dispatch(clearCart())}
 		/>
 	);

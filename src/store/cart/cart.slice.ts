@@ -14,7 +14,7 @@ const cartSlice = createSlice({
 			state: CartState, // state burada o anki cart state ini temsil eder.
 			action: PayloadAction<{
 				// state güncelleme için gerekli veriler action.payload içinde gelir.
-				productId: string;
+				productId: number;
 				name: string;
 				quantity: number;
 				price: number;
@@ -36,7 +36,7 @@ const cartSlice = createSlice({
 		},
 		removeItem: (
 			state: CartState,
-			action: PayloadAction<{ productId: string }>
+			action: PayloadAction<{ productId: number }>
 		) => {
 			const itemIndex = state.items.findIndex(
 				(item) => item.productId === action.payload.productId
