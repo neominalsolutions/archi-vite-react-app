@@ -15,7 +15,7 @@ export interface CartContextType {
 			quantity,
 		}: { name: string; productId: number; price: number; quantity: number }
 	) => void;
-	removeItem: (productId: string) => void; // sepetteki ürünü kaldırma işlevi
+	removeItem: (productId: number) => void; // sepetteki ürünü kaldırma işlevi
 	clearCart: () => void; // sepeti temizleme işlevi
 }
 

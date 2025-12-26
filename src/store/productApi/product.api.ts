@@ -34,9 +34,12 @@ export const productApi = createApi({
 					$format: 'json',
 				},
 			}),
+			keepUnusedDataFor: 120, // 120sn cachede kal default 60 saniyelim cache süresinde çalışır.
 		}),
 	}),
 });
+
+// default:60 saniye key cache -> client state deki veri 60 saniye boyunca cachede kalacağı için 60 içinde aynı istek tekrar atılırsa bu durumda api gitmeden verinin cache üzerinden okunmasını sağlayarak performans optimizasyonu yapmış olduk.
 
 // use + getProducts + Query -> Hook Sayfadan çağırılacak olan hookumuz
 

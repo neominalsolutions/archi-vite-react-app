@@ -20,7 +20,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		quantity,
 	}: {
 		name: string;
-		productId: string;
+		productId: number;
 		price: number;
 		quantity: number;
 	}) => {
@@ -51,7 +51,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 			// { ...cart } -> nesnenin referansını günceller. React state değişikliklerini referans bazlı takip eder. Reactda referans değişirse virtual dom da değişir ve yeniden render tetiklenir.
 		}
 	};
-	const removeItem = (productId: string) => {
+	const removeItem = (productId: number) => {
 		// Ürün kaldırma mantığı
 		const itemToRemove = cart.items.find(
 			(item) => item.productId === productId

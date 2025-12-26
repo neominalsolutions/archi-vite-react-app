@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // addItem -> export isimleri aynı olduğu için çakışmayı önlemek adına yeniden adlandırıyoruz.
-import { addItem as _addItem } from '../../store/cart/cart.slice';
-import { useNavigate } from 'react-router';
-import { type Product } from '../../store/products/product.slice';
-import { useDispatch } from 'react-redux';
-import { useGetProductsFilterByNameQuery } from '../../store/productApi/product.api';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { addItem as _addItem } from '../../store/cart/cart.slice';
+import { useGetProductsFilterByNameQuery } from '../../store/productApi/product.api';
+import { type Product } from '../../store/products/product.slice';
+import debounce from '../../utils/debounce';
 
 const ProductsV2Page = () => {
 	const navigate = useNavigate();
@@ -13,10 +15,20 @@ const ProductsV2Page = () => {
 	const [searchText, setSearchText] = useState<string>('');
 	// const { isLoading, data, error } = useGetProductsQuery();
 
-	// elimizdeki bir state değeri değiştirğinde searchText -> yeni parametre üzerinden çalışması gerektiğinde sayfanın yeniden render alınması gerekir. 
-	const { isLoading, data, error } = useGetProductsFilterByNameQuery({
-		name: searchText,
-	});
+	// elimizdeki bir state değeri değiştirğinde searchText -> yeni parametre üzerinden çalışması gerektiğinde sayfanın yeniden render alınması gerekir.
+	const { isLoading, data, error } = useGetProductsFilterByNameQuery(
+		{
+			name: searchText,
+		},
+		{
+			skip: false, // cache bozunalan kadar atlat default true -> fetch etme
+			// pollingInterval: 3000, // 3s de bir arka planda veriyi güncelle -> setInterval ile yaptığımız -> cache invalid olursa yeniden veri çeker.
+			refetchOnFocus: true, // Tarayıca Tab arası geçişlerde geri verinin yüklü olduğu taba dönünce yeniden refetch et
+			refetchOnReconnect: true,
+
+			// Internet bağlantısı gidip gelince yeniden güncel veriyi refetch et
+		}
+	);
 
 	const onAddtoCartReduxToolkit = (data: Product) => {
 		dispatch(
@@ -31,6 +43,18 @@ const ProductsV2Page = () => {
 
 		// cartProvider içindeki addItem methodunu kullanarak ürünü sepete eklemeliyiz.
 	};
+
+	// e.target.value -> değeri değişene kadar component içerisinde state tut.
+	// const onSearch = useMemo(
+	// 	() => debounce((e: any) => setSearchText(e.target.value), 300),
+	// 	[]
+	// );
+
+	// backend tarafında 300ms rama işlemlerinde istek attırdık.
+	const onSearchHandler = debounce(
+		(e: any) => setSearchText(e.target.value),
+		300
+	);
 
 	if (isLoading) return <>Veri Yükleniyor...</>;
 
@@ -56,7 +80,7 @@ const ProductsV2Page = () => {
 					</button>
 
 					<input
-						onChange={(e) => setSearchText(e.target.value)}
+						onChange={(e) => onSearchHandler(e)}
 						type="text"
 						placeholder="Ürün ismini yazınız"
 						className="mx-2 rounded-lg border border-gray-300 px-4 py-2 text-sm
