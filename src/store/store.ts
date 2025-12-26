@@ -8,8 +8,8 @@ import { postApi } from './postApi/post.api';
 // state merkezi olarak store da tutulacaksa, slice lar burada import edilip eklenir.
 export const store = configureStore({
 	reducer: {
-		cartState: cartReducer,
-		productState: productReducer,
+		cartState: cartReducer, // Slice ekleme şekli
+		productState: productReducer, // THUNK ekleme şekli
 		[productApi.reducerPath]: productApi.reducer, // RTK Query ekleme şekli
 		[postApi.reducerPath]: postApi.reducer,
 	}, // burada slice ların reducer ları eklenir. örn: userState: userReducer

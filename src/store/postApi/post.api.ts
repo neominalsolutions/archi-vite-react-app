@@ -17,7 +17,7 @@ export const postApi = createApi({
 				},
 			}),
 		}),
-		// POST endpoint
+		// POST endpoint -> Son girilen kaydı ekranda göstermek için cache bozmadan cache verisi üzerine apiden dönen veriyi ekliyoruz. // veri gönderme işlemlerini RTK Query ile yaparken mutation kullanıyoruz.
 		addPost: builder.mutation<Post, Partial<Post>>({
 			query: (newPost) => ({
 				url: 'posts',
@@ -30,11 +30,15 @@ export const postApi = createApi({
 			// Cache update
 			async onQueryStarted(_newPost, { dispatch, queryFulfilled }) {
 				try {
+                    // kayıut sonrası formdan gönderilen veriyi yakaladığım yer.
 					const { data: createdProduct } = await queryFulfilled;
 
 					// getProducts cache'ini manuel güncelle
 					dispatch(
+						// getPosts cache ismi üzerinden güncelleme yapıyoruz
 						postApi.util.updateQueryData('getPosts', undefined, (draft) => {
+							// draft -> mevcut cache verisi
+                            // createdProduct -> api'den dönen yeni eklenen veri
 							draft.unshift(createdProduct);
 						})
 					);
@@ -45,4 +49,6 @@ export const postApi = createApi({
 		}),
 	}),
 });
+
+// use + methodName + Query/Mutation
 export const { useAddPostMutation, useGetPostsQuery } = postApi;
