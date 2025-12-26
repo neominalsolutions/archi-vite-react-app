@@ -65,6 +65,7 @@ const ProductsV2Page = () => {
 		<>
 			<div className="container mx-auto p-4">
 				<h1>Products List</h1>
+
 				<div>
 					<button
 						onClick={() => navigate('/cart-summary')}

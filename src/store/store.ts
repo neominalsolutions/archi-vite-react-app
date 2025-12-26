@@ -3,6 +3,7 @@ import { cartReducer } from './cart/cart.slice';
 import { productReducer } from './products/product.slice';
 import { productApi } from './productApi/product.api';
 import { setupListeners } from '@reduxjs/toolkit/query';
+import { postApi } from './postApi/post.api';
 // ...
 // state merkezi olarak store da tutulacaksa, slice lar burada import edilip eklenir.
 export const store = configureStore({
@@ -10,10 +11,11 @@ export const store = configureStore({
 		cartState: cartReducer,
 		productState: productReducer,
 		[productApi.reducerPath]: productApi.reducer, // RTK Query ekleme şekli
+		[postApi.reducerPath]: postApi.reducer,
 	}, // burada slice ların reducer ları eklenir. örn: userState: userReducer
 	// bu kısım state tanımı ve store üzerinde middleware ekleme gibi işlemler için kullanılabilir.
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware().concat(productApi.middleware),
+		getDefaultMiddleware().concat(productApi.middleware, postApi.middleware),
 });
 
 setupListeners(store.dispatch);
