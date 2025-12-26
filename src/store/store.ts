@@ -1,15 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { cartReducer } from './cart/cart.slice';
 import { productReducer } from './products/product.slice';
+import { productApi } from './productApi/product.api';
+import { setupListeners } from '@reduxjs/toolkit/query';
 // ...
 // state merkezi olarak store da tutulacaksa, slice lar burada import edilip eklenir.
 export const store = configureStore({
 	reducer: {
 		cartState: cartReducer,
 		productState: productReducer,
+		[productApi.reducerPath]: productApi.reducer, // RTK Query ekleme şekli
 	}, // burada slice ların reducer ları eklenir. örn: userState: userReducer
 	// bu kısım state tanımı ve store üzerinde middleware ekleme gibi işlemler için kullanılabilir.
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware().concat(productApi.middleware),
 });
+
+setupListeners(store.dispatch);
 
 // Infer the `RootState`,  `AppDispatch`, and `AppStore` types from the store itself
 // Uygulama genelikteki tüm state in tipini çıkarsamak için kullanılır.

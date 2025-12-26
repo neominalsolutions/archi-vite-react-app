@@ -14,6 +14,8 @@ const MainLayout = () => {
 				<Link to="/">Home</Link> <Link to="/hooks">Hooks</Link>{' '}
 				<Link to="/atomic-design">Atomic Design</Link>{' '}
 				<Link to="/posts">Post Pages</Link> <Link to="/products">Products</Link>{' '}
+				<Link to="/products-v2">Products V2 (RTK Query)</Link>{' '}
+				<Link to="/posts">Post Pages</Link>{' '}
 				<Link to="/cart-summary">Cart Summary (Context API)</Link>{' '}
 				<Link to="/cart-summary-v2">Cart Summary (Redux Toolkit)</Link>{' '}
 			</nav>
